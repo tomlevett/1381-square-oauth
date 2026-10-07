@@ -8,6 +8,7 @@
   const status = document.getElementById('status');
   const result = document.getElementById('result');
   const codeField = document.getElementById('authorization-code');
+  const copyButton = document.getElementById('copy-code');
   const query = new URLSearchParams(location.search);
   const code = query.get('code');
   const returnedState = query.get('state');
@@ -36,6 +37,15 @@
       status.textContent = 'Authorisation received. Keep this page open while the secure connection is completed.';
     }
   }
+  copyButton.addEventListener('click', async () => {
+    if (!codeField.value) return;
+    try {
+      await navigator.clipboard.writeText(codeField.value);
+      copyButton.textContent = 'Copied';
+    } catch (_) {
+      status.textContent = 'Copy did not complete. Use the browser clipboard permission prompt and try again.';
+    }
+  });
   button.addEventListener('click', () => {
     const bytes = new Uint8Array(32);
     crypto.getRandomValues(bytes);
@@ -46,7 +56,6 @@
     url.searchParams.set('scope', scopes.join(' '));
     url.searchParams.set('redirect_uri', redirect);
     url.searchParams.set('state', nonce);
-    url.searchParams.set('session', 'false');
     location.assign(url.toString());
   });
 })();
