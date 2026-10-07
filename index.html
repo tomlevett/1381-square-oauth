@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; connect-src 'none'">
+  <title>1381 Square connection</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#eef2f5;color:#243746;margin:0;padding:28px}
+    main{max-width:650px;margin:8vh auto;background:white;padding:30px;border-radius:10px;box-shadow:0 3px 18px #20304015}
+    h1{font-size:26px;margin-top:0}p{line-height:1.55}button{background:#243f59;color:white;border:0;border-radius:5px;padding:13px 18px;font-size:16px;cursor:pointer}
+    button:disabled{opacity:.5;cursor:default}input{box-sizing:border-box;width:100%;padding:10px;margin-top:8px;border:1px solid #bdc9d3;border-radius:4px}label{display:block;margin-top:20px}
+    #status{padding:14px;background:#eef4f8;border-radius:5px}small{color:#53616e}
+  </style>
+  <script defer src="oauth.js"></script>
+</head>
+<body><main>
+  <h1>Connect Square reports</h1>
+  <p>This connection requests read access to payments, orders and the account profile. Square will show the permissions before you authorise it.</p>
+  <p id="status" role="status">Ready to start the read-only connection.</p>
+  <button id="connect" type="button">Connect Square with read-only access</button>
+  <div id="result" hidden>
+    <label for="authorization-code">Temporary authorisation code</label>
+    <input id="authorization-code" type="password" readonly autocomplete="off" aria-label="Temporary authorisation code">
+    <p><small>Keep this page open while setup completes. This temporary code expires quickly.</small></p>
+  </div>
+</main></body>
+</html>
